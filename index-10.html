@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bienchenfarm · Astral-Rechner</title>
+<style>
+:root{font-family:Georgia,"Times New Roman",serif;background:#080809;color:#f1e9db;color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#322819 0%,#141211 32%,#080809 70%);background-attachment:fixed}main{max-width:790px;margin:auto;padding:20px 14px 70px}header{text-align:center;padding:38px 0 27px;position:relative}header:before{content:'✦  ❧  ✦';display:block;letter-spacing:12px;color:#c9a765;font-size:1.1rem;margin-bottom:17px}header:after{content:'❦';display:block;color:#bc995a;font-size:2rem;margin-top:17px}h1{font-size:clamp(2.3rem,9vw,3.6rem);font-weight:normal;letter-spacing:.045em;color:#e8c77e;margin:8px 0;text-shadow:0 0 24px #ba8a3540}h2{font-size:1.28rem;font-weight:normal;letter-spacing:.02em;color:#e4c27e;margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid #7c6337}p{line-height:1.6}.card{background:linear-gradient(140deg,#1b1a19,#101011 80%);border:1px solid #8a6b3c;border-radius:18px;padding:21px;margin:19px 0;box-shadow:0 0 0 3px #080809,0 0 0 4px #3e3425,0 16px 34px #0008;position:relative}.card:before,.card:after{position:absolute;color:#b18a4a;font-size:1.25rem;line-height:1}.card:before{content:'❧';top:7px;right:12px}.card:after{content:'❧';bottom:7px;left:12px;transform:rotate(180deg)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}label{display:block;font-family:system-ui,sans-serif;font-size:.9rem;margin:12px 0 6px;color:#e4d6bd}input,select{width:100%;padding:12px;border-radius:8px;border:1px solid #80683e;background:#0d0d0e;color:#f9f1e3;font:1rem system-ui,sans-serif;outline-offset:2px}input:focus,select:focus{outline:2px solid #d3b36f}input[type=checkbox]{width:auto;accent-color:#c8a05e}button{border:1px solid #e3c88d;border-radius:9px;background:linear-gradient(120deg,#ae874a,#f1d79a,#a77d3b);color:#1b160e;font:700 .95rem system-ui,sans-serif;padding:12px 15px;margin:10px 0;cursor:pointer;box-shadow:0 3px 10px #0006}.secondary{background:#211c17;color:#edce8f;border-color:#8c713f}.hint,small{color:#bdb0a0;line-height:1.55;font-family:system-ui,sans-serif;font-size:.88rem}.stat{background:#161411;border:1px solid #5c482a;padding:13px;border-radius:10px;font-family:system-ui,sans-serif;font-size:.86rem;color:#cbbda9}.stat b{display:block;font-size:1.3rem;margin-top:8px;color:#e7c77d}.big{font-size:2.2rem;font-weight:bold;color:#e7c77d;text-shadow:0 0 15px #c4943440}.item{border:1px solid #705735;background:#121111;padding:14px;border-radius:10px;margin:12px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.check{display:flex;gap:10px;align-items:center;margin:13px 0}.check label{margin:0}.good{color:#b8d9a4}.bad{color:#e6a6a6}meter{width:100%;height:20px;accent-color:#d6b470}.flower{padding:13px;border:1px solid #745a33;background:linear-gradient(145deg,#211b14,#111011);border-radius:10px}.flower b{display:block;margin-bottom:8px;color:#f1d49b;font-size:1rem}.flower small{display:block;margin-bottom:9px}footer{text-align:center;color:#a79a83;font-family:system-ui,sans-serif;font-size:.83rem;margin-top:34px}::selection{background:#af8a50;color:#090909}@media(max-width:390px){.grid{grid-template-columns:1fr}}@media(prefers-reduced-motion:no-preference){button{transition:filter .2s,transform .2s}button:active{transform:scale(.98)}button:hover{filter:brightness(1.08)}}
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap');
+:root{--gold:#d9b56d;--pale:#f4dcac}
+body{background:radial-gradient(ellipse at 50% 0%,#30251d 0%,#111014 40%,#060608 85%);overflow-x:hidden}
+body:before{content:'✧      ✦      ✧';position:fixed;top:18%;right:-40px;color:#c9a46019;font-size:8rem;pointer-events:none;transform:rotate(22deg)}
+main{max-width:900px;padding:14px 15px 70px}
+header{padding:32px 4px 22px;background:radial-gradient(ellipse at center,#48352165,transparent 65%);border-bottom:1px solid #80623b}
+header:before{content:'❦ ✦ 🐝 ✦ ❦';letter-spacing:.2em}
+header:after{content:'🥀  ✧  🦋  ✧  🐝';font-size:1.25rem;margin-top:10px}
+h1{font-family:'Great Vibes','Cormorant Garamond',Georgia,serif;font-size:clamp(3.9rem,12vw,6.2rem);font-weight:400;letter-spacing:0;line-height:1.15;background:linear-gradient(#fff2c9,#c99c4d 75%,#f9e4ae);background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:0 0 25px #bb853322}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.65rem,5vw,2.15rem);font-style:italic;color:#f3d69c}
+header .subtitle{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.65rem;color:#e9d3aa}
+.card{background:linear-gradient(145deg,#141217,#070809 85%);border-color:#b58b49;box-shadow:inset 0 0 0 1px #594226,0 0 0 3px #080809,0 0 0 4px #49371f,0 15px 35px #0009}
+.card:before{content:'✥';font-size:1.1rem;top:8px;right:12px}.card:after{content:'✥';font-size:1.1rem;bottom:8px;left:12px}
+.flower{background:linear-gradient(145deg,#1b151a,#0b0b0d);border-color:#9d7845;position:relative}
+.flower:before{content:'✧';position:absolute;right:10px;top:7px;color:#b58b49}
+.flower b{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.28rem}
+button{transition:filter .15s}button:hover{filter:brightness(1.08)}
+.nav{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:18px 0 26px}
+.nav a{color:#eacb8e;text-decoration:none;border:1px solid #8b683b;border-radius:9px;padding:10px 13px;background:linear-gradient(#211a16,#0c0c0e);font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem}
+.nav a:focus-visible{outline:2px solid #fff0bd}
+.decor{color:#d3a95c;letter-spacing:.15em;text-align:center;margin:12px 0}
+.flower small{color:#e3c999}.hero-flower{font-size:1.45rem}
+#dailyStatus{border:1px solid #725735;padding:12px;border-radius:9px;background:#15110f}
+#dailyCoins{font-family:'Cormorant Garamond',Georgia,serif;color:#e7c77d;font-size:1.45rem}
+@media(max-width:390px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.flower{padding:10px}.flower b{font-size:1.1rem}.card{padding:15px}.nav a{padding:9px;font-size:1.1rem}}
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap');
+body{background:#050509 radial-gradient(circle at 50% 10%,#261c32 0%,#070709 45%,#050509 100%)}
+main{max-width:950px}
+.illustrated-header{padding:0;margin:0 -14px 8px}
+.illustrated-header:before,.illustrated-header:after{display:none}
+.illustrated-header img{display:block;width:100%;height:auto;box-shadow:0 12px 30px #000a}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(1.65rem,5vw,2.15rem);color:#f3d99e}
+.card{background:linear-gradient(145deg,#131018,#070709 80%);border:1px solid #c09b56;box-shadow:inset 0 0 0 1px #624c2a,0 0 0 3px #050509,0 0 0 4px #503a22,0 18px 38px #000b}
+.card:before{content:'❦';font-size:1.6rem}.card:after{content:'❦';font-size:1.6rem}
+.flower{background:linear-gradient(140deg,#17111c,#070709);border:1px solid #a88044;box-shadow:inset 0 0 12px #9b693314}
+.flower b{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem}
+nav a{background:linear-gradient(#2c211d,#0a090c);border:1px solid #a9844a;color:#f2d5a1;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.2rem}
+.shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.shop-item{display:flex;flex-direction:column;align-items:center;gap:7px;margin:0;padding:12px 9px;background:linear-gradient(155deg,#201523,#09090d);border:1px solid #99743f;border-radius:13px;text-align:center;cursor:pointer}
+.shop-item:has(input:checked){border-color:#ffe2a3;box-shadow:0 0 0 2px #a87c39,0 0 19px #e7b35a36}
+.shop-item img{width:100%;max-width:155px;height:150px;object-fit:cover;border-radius:9px;border:1px solid #ad8c55}
+.shop-item strong{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;line-height:1.12;color:#f2ddb7}
+.shop-price{font-weight:bold;color:#eac47c;font-size:1.06rem}
+.choose{display:flex;align-items:center;justify-content:center;gap:7px;font: .8rem system-ui,sans-serif;color:#dfcfae}
+.choose input{width:18px;height:18px;accent-color:#d7ad62}
+.parking-tip{background:linear-gradient(140deg,#28201a,#151017);border:1px solid #d7ad62;border-radius:12px;padding:16px;margin:20px 0}
+.parking-tip[hidden]{display:none}
+.parking-tip h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.55rem;color:#f2d99e;margin:0}
+@media(min-width:650px){.shop-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:390px){.grid{gap:8px}.card{padding:15px}.shop-item img{height:125px}.shop-item strong{font-size:1rem}}
+.park-result{margin-top:17px;border:1px solid #a9844a;border-radius:12px;padding:17px;background:linear-gradient(145deg,#241b19,#100d13)}.park-result .big{display:block;margin:6px 0}.bonus-warning{border:1px solid #c79b55;border-radius:12px;background:#2a2116;padding:13px 16px;margin-top:17px;color:#f1d9a8}.pass-rewards{margin-top:24px;padding-top:15px;border-top:1px solid #977441}.pass-rewards h3,.pass-rewards h4{color:#eacb86}.reward-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0 20px}.reward-choice{display:flex;align-items:center;gap:8px;border:1px solid #715b39;border-radius:10px;padding:10px 8px;font-size:.87rem;line-height:1.35}.reward-choice input{width:18px;height:18px;flex:none;accent-color:#d4ae65}.reward-choice:has(input:disabled){opacity:.7}@media(max-width:370px){.reward-grid{grid-template-columns:1fr}}
+
+.fairy-table{display:grid;grid-template-columns:1fr repeat(2,minmax(0,1fr));gap:9px;align-items:center}.fairy-head{text-align:center;color:#eacb86;font:600 .85rem system-ui}.fairy-counter{display:flex;align-items:center;gap:4px}.fairy-counter button{padding:8px 10px;margin:0;min-width:30px}.fairy-counter input{text-align:center;min-width:0;padding:9px 3px}.fairy-name{font:600 .91rem system-ui}.time-note{border:1px solid #755a35;border-radius:10px;padding:12px;background:#171319;margin-top:12px}.time-note p{margin:5px 0}.time-note strong{color:#e9c98a}.split-note{border-left:3px solid #c9a765;padding-left:12px}.reset-wrap{text-align:center;margin:20px 0}.reset-wrap button{background:#281a1d;color:#f1c5c5;border-color:#a57575}@media(max-width:480px){.fairy-table{gap:5px}.fairy-counter{gap:2px}.fairy-counter button{padding:8px 5px;min-width:23px;font-size:.8rem}.fairy-counter input{font-size:.82rem;padding:8px 1px}.fairy-name{font-size:.78rem}}
+</style></head><body><main>
+<header class="illustrated-header"><img src="banner.webp" alt="Bienchenfarm – Astral- und Feen-Rechner mit goldenen Ornamenten, Rosen, Bienchen und Schmetterlingen"></header>
+<nav class="nav" aria-label="Bereiche"><a href="#astral">⌂ Rechner</a><a href="#feen">🦋 Feen</a><a href="#parken">🧚 Feen parken</a><a href="#shop">♕ Wunschliste</a><a href="#prognose">✧ Prognose</a></nav>
+<section class="card" id="astral"><h2>🌙 Dein Astral</h2><div class="grid">
+<div><label for="pass">Pass</label><select id="pass"><option value="free">Gratis – 18 eigene Feen</option><option value="free_no_own">Gratispass ohne eigene Feen</option><option value="premium">Premium – 30 eigene Feen</option><option value="deluxe">Deluxe – 30 eigene Feen</option></select></div>
+
+<div><label for="coins">Aktuelle Münzen</label><input id="coins" type="number" min="0" value="0"></div>
+</div>
+<p class="hint">Die Restlaufzeiten werden für alle Spieler automatisch angezeigt. Astral und Pass wechseln alle 28 Tage; der Shop hat einen eigenen Wechseltermin.</p><div class="time-note" id="timeStatus" aria-live="polite"></div></section>
+<section class="card" id="feen"><h2>🦋 Astraler Gesamtrechner</h2>
+<p class="hint">Bereits gesammelte eigene Feen und Freundesfeen gemeinsam eintragen.</p>
+<div class="pass-rewards" id="friendSection"><h3>🪙 Bereits gesammelte Feen</h3><div class="fairy-table"><span></span><span class="fairy-head">Ohne Bonus</span><span class="fairy-head">Mit Bonus</span><span class="fairy-name">💛 Gold</span><div class="fairy-counter" data-counter="totalGoldNormal"></div><div class="fairy-counter" data-counter="totalGoldBonus"></div><span class="fairy-name">💜 Lila</span><div class="fairy-counter" data-counter="totalPurpleNormal"></div><div class="fairy-counter" data-counter="totalPurpleBonus"></div><span class="fairy-name">💙 Blau</span><div class="fairy-counter" data-counter="totalBlueNormal"></div><div class="fairy-counter" data-counter="totalBlueBonus"></div></div><p id="fairyTotal" class="good" aria-live="polite"></p><p class="hint">Die eingetragenen Feen werden automatisch zum berechneten Guthaben addiert. Bitte nur Feen eintragen, deren Münzen noch nicht im Feld „Aktuelle Münzen“ enthalten sind.</p><button type="button" id="clearFairies" class="secondary">Feenzähler zurücksetzen</button></div>
+<div class="time-note" aria-live="polite"><p><strong>🌸 Nächster Feenblumen-Wechsel</strong></p><p id="flowerSwitch">–</p><p class="hint">Jede Bonusblume wechselt montags um 01:00 Uhr (Winterzeit) bzw. 02:00 Uhr (Sommerzeit) – auch bei Lila und Blau. Damit der Bonus zählt, müssen alle Feen eines Slots vor dem Wechsel fertig und abgeholt sein. Danach bleiben die normalen Münzen erhalten, nur der Bonus entfällt.</p></div>
+<div class="pass-rewards"><h3>🪙 Astral-Pass-Belohnungen</h3><p class="hint">Wähle dein aktuelles Pass-Level und hake abgeholte Belohnungen ab. Abgehakte Münzen zählen automatisch zum Guthaben. Nicht abgeholte Belohnungen bleiben in der möglichen Prognose. Gratis-Münzen zählen zusätzlich zu Premium oder Deluxe.</p><label for="passLevel">Aktuelles Pass-Level</label><select id="passLevel"><option value="0">Noch unter Level 5</option></select><div id="passRewardsGrid"></div><p class="hint" id="passSummary" aria-live="polite"></p></div>
+</section>
+<section class="card" id="shop"><h2>🛍️ Astral-Shop-Wunschliste</h2><p class="hint">Wähle deine gewünschten Artikel direkt aus dem aktuellen Shop. Die Preise werden automatisch übernommen. Bereits gekaufte Artikel einfach abwählen. Deine Auswahl bleibt auf deinem Gerät gespeichert.</p><div id="items" class="shop-grid"></div></section>
+<section class="card" id="prognose"><h2>✨ Deine Münz-Übersicht</h2><div class="grid">
+<div class="stat">Berechnetes Guthaben<b id="currentCoins">–</b></div><div class="stat">Noch mögliche Pass-Belohnungen<b id="rewards">–</b></div></div>
+<p class="hint">Dein berechnetes Guthaben enthält deine eingegebenen Münzen, alle eingetragenen Feen und die abgehakten Pass-Belohnungen. Bitte nichts doppelt im Feld „Aktuelle Münzen“ erfassen. Offene Pass-Belohnungen sind nur eine Prognose und können während der Shop-Übergangszeit einer anderen Währung zugeordnet werden.</p><p id="forecastInfo" class="hint"></p>
+<p>Mögliches Guthaben inklusive offener Pass-Belohnungen</p><div class="big" id="total">–</div><div class="row"><span>Wunschliste</span><b id="target">–</b></div><meter id="progress" min="0" max="100" value="0"></meter><p id="result" aria-live="polite"></p>
+<aside id="parkingTip" class="parking-tip" hidden><h3>🧚‍♀️ Bienchen-Tipp: Feen parken!</h3><p>Wenn du deine Wunschliste nicht mehr erreichen kannst, kannst du Feen für später aufbewahren. Berücksichtige den Shopwechsel und die 14-tägige Übergangsfrist der alten Währung.</p></aside><button id="copy" type="button">📋 Ergebnis kopieren</button></section>
+<section class="card" id="parken"><h2>🧚‍♀️ Feenpark-Rechner</h2>
+<p class="hint">Wie viele Feen hast du bereits für später gesammelt? Trage die Anzahl pro Farbe ein. Wir berechnen den Münzwert <strong>ohne Wochenbonus</strong>. Die geparkten Feen werden nicht automatisch zum Guthaben addiert.</p>
+<div class="grid">
+<div><label for="parkGold">💛 Goldene Feen · 4 🪙</label><input id="parkGold" type="number" min="0" step="1" value="0" inputmode="numeric"></div>
+<div><label for="parkPurple">💜 Lilane Feen · 3 🪙</label><input id="parkPurple" type="number" min="0" step="1" value="0" inputmode="numeric"></div>
+<div><label for="parkBlue">💙 Blaue Feen · 2 🪙</label><input id="parkBlue" type="number" min="0" step="1" value="0" inputmode="numeric"></div>
+</div>
+<div class="park-result" aria-live="polite"><span class="hint">Wert deiner geparkten Feen</span><strong class="big" id="parkCoins">0 🪙</strong><span class="hint" id="parkDetails">0 Feen insgesamt</span></div>
+<p class="hint">Deine Eingaben bleiben auf diesem Gerät gespeichert.</p>
+</section>
+
+<div class="reset-wrap"><button type="button" id="resetAll">🔄 Alles zurücksetzen</button></div><footer>Inoffizielle Bienchenfarm-Fanseite zu The Cozy Florist 🐝</footer>
+</main><script>
+const $=id=>document.getElementById(id),fmt=n=>Math.round(n).toLocaleString('de-DE');
+const fairyIds=['totalGoldNormal','totalGoldBonus','totalPurpleNormal','totalPurpleBonus','totalBlueNormal','totalBlueBonus'];
+const ids=['pass','coins','passLevel','parkGold','parkPurple','parkBlue',...fairyIds];
+const catalog=[
+{name:'Kristall-Ozeanpalast · Schloss',price:9999,img:'shop1.webp'},
+{name:'Tiefsee-Sternenschuppen',price:5999,img:'shop2.webp'},
+{name:'Leuchtende Kristallmuschel',price:3999,img:'shop3.webp'},
+{name:'Sternige Untiefen',price:3999,img:'shop4.webp'},
+{name:'Gezeitensmaragdschatten',price:3999,img:'shop5.webp'},
+{name:'Verträumte Meeresflut',price:999,img:'shop6.webp'},
+{name:'Kristall-Ozeanpalast · Rahmen',price:1666,img:'shop7.webp'},
+{name:'Kristall-Ozeanpalast · Titel',price:1666,img:'shop8.webp'}
+ ];let selected=[];let claimed={};
+const passLevels=[5,15,25,30,35,39];
+const passCoins={free:[10,10,10,0,10,10],premium:[25,30,50,50,50,60],deluxe:[50,60,100,100,100,120]};
+function passRows(){return ['free','free_no_own'].includes($('pass').value)?['free']:['free',$('pass').value]}
+function rewardSum(){return passRows().reduce((sum,track)=>sum+passLevels.reduce((subtotal,level,i)=>subtotal+(!claimed[track+'-'+level]?passCoins[track][i]:0),0),0)}
+function claimedRewardSum(){return passRows().reduce((sum,track)=>sum+passLevels.reduce((subtotal,level,i)=>subtotal+(claimed[track+'-'+level]?passCoins[track][i]:0),0),0)}
+function renderPass(){const root=$('passRewardsGrid');root.replaceChildren();const current=Number($('passLevel').value);for(const track of passRows()){const heading=document.createElement('h4');heading.textContent=track==='free'?'🌸 Gratis-Belohnungen':track==='premium'?'✨ Premium-Belohnungen':'👑 Deluxe-Belohnungen';root.append(heading);const grid=document.createElement('div');grid.className='reward-grid';passLevels.forEach((level,i)=>{const label=document.createElement('label');label.className='reward-choice';const cb=document.createElement('input');cb.type='checkbox';const key=track+'-'+level;cb.checked=!!claimed[key];cb.disabled=level>current;cb.addEventListener('change',()=>{claimed[key]=cb.checked;calc()});const span=document.createElement('span');span.textContent='Level '+level+' · '+passCoins[track][i]+' 🪙'+(level>current?' (noch offen)':'');label.append(cb,span);grid.append(label)});root.append(grid)}$('passSummary').textContent='Bereits abgeholt: '+fmt(claimedRewardSum())+' 🪙 · Noch möglich: '+fmt(rewardSum())+' 🪙'}
+
+function num(id,min,max){const n=Number($(id).value);return Number.isFinite(n)?Math.min(max,Math.max(min,n)):min}
+const passDuration=28,graceDays=14,dayMs=86400000;
+// Gemeinsame Spieltermine: 01:00 Uhr MEZ = 00:00 UTC im Dezember 2026.
+const initialPassEnd=Date.UTC(2026,11,11,0),initialShopEnd=Date.UTC(2026,11,7,0);
+function getTimeline(){
+ const now=new Date(),t=now.getTime(),cycle=passDuration*dayMs;
+ const cycles=Math.max(0,Math.ceil((t-initialPassEnd)/cycle));
+ const passEnd=new Date(initialPassEnd+cycles*cycle);
+ const shopEnd=new Date(initialShopEnd),last=new Date(initialShopEnd+graceDays*dayMs);
+ const remaining=Math.max(0,(Math.min(passEnd.getTime(),last.getTime())-t)/dayMs);
+ let future=0,futureDays=0,cursor=passEnd.getTime();
+ while(cursor<last.getTime()&&future<100){futureDays+=Math.max(0,(Math.min(cursor+cycle,last.getTime())-Math.max(cursor,t))/dayMs);cursor+=cycle;future++}
+ return {now,passEnd,shopEnd,last,remaining,futureDays,future,hasShop:true,shopChanged:t>=initialShopEnd,shopExpired:t>=last.getTime()};
+}
+function countdown(end,now){const ms=end.getTime()-now.getTime();if(ms<=0)return 'Abgelaufen';const minutes=Math.ceil(ms/60000),d=Math.floor(minutes/1440),h=Math.floor(minutes%1440/60),m=minutes%60;return d+' Tage, '+h+' Std., '+m+' Min.'}
+function fairySummary(){const rates=[4,8,3,6,2,4];const counts=fairyIds.map(id=>Math.floor(num(id,0,1e9)));const total=counts.reduce((sum,n,i)=>sum+n*rates[i],0);$('fairyTotal').textContent='🪙 '+fmt(total)+' Münzen aus '+fmt(counts.reduce((a,b)=>a+b,0))+' bereits gesammelten Feen';return total}
+function save(){try{localStorage.setItem('bienchenfarm-v6',JSON.stringify({fields:Object.fromEntries(ids.map(id=>[id,$(id).type==='checkbox'?$(id).checked:$(id).value])),selected,claimed}))}catch(e){}}
+function load(){try{let x=JSON.parse(localStorage.getItem('bienchenfarm-v6'))||JSON.parse(localStorage.getItem('bienchenfarm-v5'))||JSON.parse(localStorage.getItem('bienchenfarm-v4'))||JSON.parse(localStorage.getItem('bienchenfarm-v3'))||JSON.parse(localStorage.getItem('bienchenfarm-v2'));if(x&&!localStorage.getItem('bienchenfarm-v5')&&x.fields){delete x.fields.friends;delete x.fields.friendAvg;}if(!x){x=JSON.parse(localStorage.getItem('bienchenfarm-v1'));if(x){const daily=x.fields?.pass==='free'?18:30;const pct=Math.max(0,Math.min(100,Number(x.fields?.bonus??100)))/100;x.fields.goldBonus=String(Math.round(daily*pct));x.fields.goldNormal=String(daily-Math.round(daily*pct))}}if(!x)return;for(let [id,v] of Object.entries(x.fields||{})){if(!$(id))continue;if($(id).type==='checkbox')$(id).checked=!!v;else $(id).value=v}if(x.claimed&&typeof x.claimed==='object')claimed=x.claimed;if(Array.isArray(x.selected))selected=x.selected.filter(i=>Number.isInteger(i)&&i>=0&&i<catalog.length);else if(Array.isArray(x.items))selected=x.items.map(i=>catalog.findIndex(c=>c.name.toLowerCase().includes(String(i.name||'').toLowerCase())&&String(i.name||'').length>5)).filter(i=>i>=0)}catch(e){}}
+function render(){const root=$('items');root.replaceChildren();catalog.forEach((item,i)=>{const label=document.createElement('label');label.className='shop-item';const image=document.createElement('img');image.src=item.img;image.alt=item.name;image.loading='lazy';const title=document.createElement('strong');title.textContent=item.name;const price=document.createElement('span');price.textContent=fmt(item.price)+' 🪙';price.className='shop-price';const choose=document.createElement('span');choose.className='choose';const check=document.createElement('input');check.type='checkbox';check.checked=selected.includes(i);check.setAttribute('aria-label',item.name+' zur Wunschliste hinzufügen');check.addEventListener('change',()=>{selected=check.checked?[...new Set([...selected,i])]:selected.filter(x=>x!==i);calc()});choose.append(check,document.createTextNode(' Auf die Wunschliste'));label.append(image,title,price,choose);root.append(label)})}
+function updateParking(){const gold=Math.floor(num('parkGold',0,1e9)),purple=Math.floor(num('parkPurple',0,1e9)),blue=Math.floor(num('parkBlue',0,1e9));$('parkCoins').textContent=fmt(gold*4+purple*3+blue*2)+' 🪙';$('parkDetails').textContent=fmt(gold+purple+blue)+' Feen insgesamt · Gold: '+fmt(gold*4)+' · Lila: '+fmt(purple*3)+' · Blau: '+fmt(blue*2)}
+function nextFlowerSwitch(now){const d=new Date(now);const day=d.getUTCDay();const mondayOffset=(8-day)%7;const midnight=Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()+mondayOffset,0,0,0);return new Date(midnight<=now.getTime()?midnight+7*dayMs:midnight)}
+function updateFlowerNotice(){const now=new Date(),next=nextFlowerSwitch(now);$('flowerSwitch').textContent=formatDate(next)+' · noch '+countdown(next,now)}
+function formatDate(d){return d.toLocaleString('de-DE',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Berlin'})}
+function calc(){updateParking();renderPass();updateFlowerNotice();const timeline=getTimeline(),rewards=timeline.shopExpired?0:rewardSum(),fairies=fairySummary(),claimedCoins=claimedRewardSum(),current=num('coins',0,1e12)+fairies+claimedCoins,total=current+rewards,target=selected.reduce((sum,i)=>sum+catalog[i].price,0);
+ $('currentCoins').textContent=fmt(current)+' 🪙';$('rewards').textContent=fmt(rewards)+' 🪙';$('total').textContent=fmt(total)+' 🪙';$('target').textContent=fmt(target)+' 🪙';$('progress').value=target?Math.min(100,total/target*100):0;
+ $('result').textContent=!target?'Füge einen Wunsch hinzu, um dein Ziel zu prüfen.':total>=target?'🎉 Dein Ziel ist mit dem Guthaben und den möglichen Pass-Belohnungen erreichbar!':'Es fehlen derzeit '+fmt(target-total)+' Münzen.';$('result').className=!target||total>=target?'good':'bad';$('parkingTip').hidden=!(target>total);
+ const p=timeline.passEnd,s=timeline.shopEnd;
+ $('timeStatus').innerHTML='<p>🌙 Astral & Pass: <strong>'+countdown(p,timeline.now)+'</strong> <small>(nächster Wechsel: '+formatDate(p)+')</small></p>'+
+ '<p>🛍️ Bisheriger Astral-Shop: <strong>'+(timeline.shopChanged?'Shopwechsel erfolgt':'Noch '+countdown(s,timeline.now))+'</strong> <small>('+formatDate(s)+')</small></p>'+
+ '<p>⏳ Alte Münzwährung: <strong>'+(timeline.shopExpired?'Übergangsfrist abgelaufen':countdown(timeline.last,timeline.now)+' verwendbar')+'</strong> <small>(bis '+formatDate(timeline.last)+')</small></p>'+
+ (timeline.shopChanged?'<p class="hint">Neuer Shop: Enddatum noch unbekannt. Alte und neue Münzen nicht vermischen.</p>':'');
+ $('forecastInfo').textContent=timeline.shopExpired?'Die bisherige Shopwährung ist abgelaufen. Ein Enddatum für den neuen Shop ist noch nicht bekannt.':'Berechnetes Guthaben = eingetragene Münzen + Feenwert + abgeholte Pass-Belohnungen. Zusätzlich siehst du mögliche offene Pass-Belohnungen.';save()}
+for(let l=1;l<=39;l++){const o=document.createElement('option');o.value=String(l);o.textContent='Level '+l;$('passLevel').append(o);}
+for(const id of fairyIds){const wrap=document.querySelector('[data-counter="'+id+'"]');const minus=document.createElement('button');minus.type='button';minus.className='secondary';minus.textContent='−';minus.setAttribute('aria-label',id+' verringern');const input=document.createElement('input');input.type='number';input.min='0';input.step='1';input.id=id;input.value='0';input.setAttribute('aria-label',id);const plus=document.createElement('button');plus.type='button';plus.className='secondary';plus.textContent='+';plus.setAttribute('aria-label',id+' erhöhen');minus.onclick=()=>{input.value=String(Math.max(0,Math.floor(Number(input.value)||0)-1));calc()};plus.onclick=()=>{input.value=String(Math.max(0,Math.floor(Number(input.value)||0)+1));calc()};wrap.append(minus,input,plus)}
+load();render();ids.forEach(id=>{$(id).addEventListener('input',calc);$(id).addEventListener('change',calc)});
+$('pass').addEventListener('change',calc);
+$('clearFairies').onclick=()=>{if(!confirm('Feenzähler wirklich zurücksetzen? Ihr Münzwert wird dann auch vom berechneten Guthaben abgezogen.'))return;for(const id of fairyIds)$(id).value='0';calc()};
+$('copy').onclick=async()=>{const result=['🐝 Bienchenfarm – Münz-Übersicht','Berechnetes Guthaben: '+$('currentCoins').textContent,'Eingetragene Feen: '+$('fairyTotal').textContent,'Abgeholte Pass-Belohnungen: '+fmt(claimedRewardSum())+' 🪙','Mögliche Pass-Belohnungen: '+$('rewards').textContent,'Mögliches Guthaben: '+$('total').textContent,'Wunschliste: '+$('target').textContent,$('result').textContent].join('\n');try{await navigator.clipboard.writeText(result);$('copy').textContent='✓ Kopiert!'}catch(e){prompt('Ergebnis kopieren:',result)}};
+$('resetAll').onclick=()=>{if(!confirm('Wirklich ALLE gespeicherten Bienchenfarm-Eingaben, Passbelohnungen und die Wunschliste zurücksetzen?'))return;for(const key of ['bienchenfarm-v1','bienchenfarm-v2','bienchenfarm-v3','bienchenfarm-v4','bienchenfarm-v5','bienchenfarm-v6'])localStorage.removeItem(key);location.reload()};
+calc();setInterval(calc,60000);
+</script></body></html>
